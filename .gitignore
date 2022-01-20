@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__
+*.so
+mesh_cut/build
+evals
+exps
