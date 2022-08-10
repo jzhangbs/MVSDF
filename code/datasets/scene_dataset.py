@@ -108,7 +108,7 @@ class SceneDataset(torch.utils.data.Dataset):
                     for i in range(self.n_images)], dim=0).unsqueeze(1)
             self.depth_cams = torch.stack(
                 [torch.from_numpy(
-                    load_cam(f'{self.instance_dir}/../cam_{i:08}_flow3.txt', 256, 1)).to(torch.float32) 
+                    load_cam(f'{self.instance_dir}/../cam_{self.pair["id_list"][i].zfill(8)}_flow3.txt', 256, 1)).to(torch.float32) 
                     for i in range(self.n_images)], dim=0)
             self.feat_img_scale = conf.feat_img_scale
             self.cams_hd = torch.stack(
@@ -207,12 +207,15 @@ class SceneDataset(torch.utils.data.Dataset):
             ground_truth['size'] = self.size.cuda()
             ground_truth['center'] = self.center.cuda()
 
+            id = self.pair['id_list'][idx]
+            src_ids = self.pair[id]['pair']
+            src_idxs = [self.pair[src_id]['index'] for src_id in src_ids][:self.num_src]
             # ground_truth["rgb_c"] = self.rgb_2xd[idx].cuda()
             ground_truth["feat"] = self.feats[idx].cuda()
             # ground_truth["rgb_src_c"] = torch.stack([self.rgb_2xd[int(self.pair[str(idx)]['pair'][i])] for i in range(self.num_src)]).cuda()
-            ground_truth["feat_src"] = self.feats[ [int(self.pair[str(idx)]['pair'][i]) for i in range(self.num_src)] ].cuda()
+            ground_truth["feat_src"] = self.feats[src_idxs].cuda()
             ground_truth["cam"] = self.cams_hd[idx].cuda()
-            ground_truth["src_cams"] = self.cams_hd[ [int(self.pair[str(idx)]['pair'][i]) for i in range(self.num_src)] ].cuda()
+            ground_truth["src_cams"] = self.cams_hd[src_idxs].cuda()
 
             for attr in ['depths', 'depth_cams', 'size', 'center', 'cam', 'src_cams']:
                 sample[attr] = ground_truth[attr]
