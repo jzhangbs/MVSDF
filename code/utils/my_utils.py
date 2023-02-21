@@ -331,7 +331,7 @@ def carving_t2(points, depths, cams, out_thresh_perc, mask=False, image_in_cpu=F
     return ave_dist, scene_inside, scene_valid
 
 
-def load_pair(file: str):
+def load_pair(file: str, min_views: int=None):
     with open(file) as f:
         lines = f.readlines()
     n_cam = int(lines[0])
@@ -343,6 +343,7 @@ def load_pair(file: str):
         img_id = lines[i].strip()
         pair_str = lines[i+1].strip().split(' ')
         n_pair = int(pair_str[0])
+        if min_views is not None and n_pair < min_views: continue
         for j in range(1, 1+2*n_pair, 2):
             pair.append(pair_str[j])
             score.append(float(pair_str[j+1]))

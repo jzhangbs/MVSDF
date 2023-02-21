@@ -29,7 +29,8 @@ dependencies:
     - pybind11==2.9.0
 ```
 ## Data Preparation
-Download preprocessed DTU datasets from [here](https://hkustconnect-my.sharepoint.com/:u:/g/personal/jzhangbs_connect_ust_hk/EazyGuwPC5tIkbI3fgeERgEBBUXBV16_hIkud_dhS34wVw?e=CWjJGP)
+Download preprocessed DTU datasets from [here](https://hkustconnect-my.sharepoint.com/:u:/g/personal/jzhangbs_connect_ust_hk/EazyGuwPC5tIkbI3fgeERgEBBUXBV16_hIkud_dhS34wVw?e=CWjJGP). If you would like to 
+process your own data, please refer to this [instruction](BYOD.md). 
 
 ## Training
 ``` sh
