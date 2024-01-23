@@ -29,7 +29,7 @@ dependencies:
     - pybind11==2.9.0
 ```
 ## Data Preparation
-Download preprocessed DTU datasets from [here](https://hkustconnect-my.sharepoint.com/:u:/g/personal/jzhangbs_connect_ust_hk/EazyGuwPC5tIkbI3fgeERgEBBUXBV16_hIkud_dhS34wVw?e=CWjJGP). If you would like to 
+Download preprocessed DTU datasets from [here](https://huggingface.co/datasets/jzhangbs/mvsdf_dtu). If you would like to 
 process your own data, please refer to this [instruction](BYOD.md). 
 
 ## Training
@@ -40,7 +40,7 @@ python training/exp_runner.py --data_dir <DATA_DIR>/scan<SCAN>/imfunc4 --batch_s
 The results will be written in `exps/mvsdf_dtu_<SCAN>`. 
 
 ## Trained Models
-Download [trained models](https://hkustconnect-my.sharepoint.com/:u:/g/personal/jzhangbs_connect_ust_hk/Eagqe_XPyNhBh--lvtxjEVEBKCI-aXLWbRuxyi0jNqclKg?e=Jm9EaS) and put them in `exps` folder. This set of models achieve the following results. 
+Download [trained models](https://huggingface.co/jzhangbs/mvsdf_model_release) and put them in `exps` folder. This set of models achieve the following results. 
 
 |      | Chamfer | PSNR  |
 |------|---------|-------|
